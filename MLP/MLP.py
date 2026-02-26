@@ -252,10 +252,9 @@ def prepare_data_loader(X, y, batch_size):
     batch_y = y[permutation[i:j]]
     yield batch_x, batch_y
 
-class Net2:
+class Net:
   def __init__(self):
     self.layers = self.make_layers()
-
 
   def __call__(self, x):
     return self.forward(x)
@@ -333,11 +332,11 @@ def train():
   X, Xtest, y, ytest = prepare_data()
 
   print('Model with ReLU activation using Gradient Descent Optimizer')
-  model = Net2()
+  model = Net()
   optimizer, loss_fn = prepare_trainer_GD(model)
   train_model(model, X, y, optimizer, loss_fn,
-            epochs=200,
-            batch_size=64)
+            epochs=500,
+            batch_size=128)
   evaluate_model(model, Xtest, ytest, loss_fn)
 
 if __name__ =='__main__':
